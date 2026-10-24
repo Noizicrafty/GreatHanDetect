@@ -1,17 +1,22 @@
-# Совместимость clyv с LinQ TPU
+# Совместимость
 
-| Компонент | В исходной программе | На TPU |
-|---|---|---|
-| Object detector | YOLO-World yolov8l-worldv2.pt | Не в проверенном списке |
-| Pose | yolo11n-pose.pt | Не в проверенном списке, есть другая yolov8n_pose |
-| Tracking | ByteTrack | В адаптере CPU IoU tracker |
-| Курение | CPU heuristics / optional temporal classifier | CPU эвристика |
-| Вход | BGR frame | RGB / 255, NCHW, letterbox |
-| Выход | Ultralytics Results | CPU декодирование raw heads + NMS |
-| Runtime | CUDA/CPU | pytpu и устройство /dev/tpu* |
+| Назначение | Проверенная среда |
+|---|---|
+| Клиент | Windows / Python 3.12, NumPy 1.26, OpenCV 4.11, ONNX Runtime 1.31; CUDA и SDK не нужны |
+| Компилятор | Linux x86_64 / Python **3.12.11**, TPU Framework **2026.9.45**, TPU_H1M / O1 |
+| Необязательная работа с `.pt` | PyTorch 2.9.1+cu128, torchvision 0.24.1, Ultralytics 8.4.186; CPU тоже возможен |
 
-Риски: неподдерживаемые ONNX-операторы, нестандартные обрезанные головы YOLO, ошибки ввода/вывода, задержка, ошибки PTQ и лицензии.
-Только успешная реальная компиляция SDK создаёт исполняемые `.tpu`, а не переименование `.onnx`.
-Тестирование на RTX 4060 не заменяет измерение на физическом LinQ TPU.
+Клиент: `requirements/application.txt`. ONNX-подготовка дополнительно: `requirements/export.txt`. Компилятор устанавливается в отдельное окружение. Не заявлена совместимость со всеми версиями внутри диапазонов зависимостей.
 
-Источник спецификации: предоставленный пользователем tpu_framework.pdf, выпуск 2026.9.45, главы 5–6.
+| Сеть | Вход | Выход | Проверка |
+|---|---|---|---|
+| YOLOv8n COCO | `images [1,3,416,416]` | `output0 [1,84,3549]` | Полный сценарий зоны |
+| YOLO11n-Pose | `images [1,3,416,416]` | `output0 [1,56,3549]` | Исполнение; без keypoint AP |
+| YOLO-World 5 prompts | `images [1,3,416,416]` | `output0 [1,9,3549]` | Исполнение; ухудшение PTQ |
+| Обученная YOLOv8n 4 класса | `.pt`, inference imgsz=640 | Ultralytics Results | Локальные предсказания, не готовая TPU-программа |
+
+Проверенные 416-конфигурации нельзя смешивать с прежним экспортом 640 (`8400` позиций). Вход FP32 RGB/255, NCHW, letterbox; декодирование и NMS на CPU. Старый tiny-YOLOv2 имеет собственный масштаб входа и не является основным сценарием.
+
+`python -m greathan` — текущая консоль, `linq_amqp` — проверенный удалённый путь. Старые `run_tpu_video.py`, `COMPILE_BOTH_UBUNTU.sh`, `configs/project.yaml` — инженерный путь прямого устройства и экспорта 640, отдельный от измеренного приложения.
+
+Вместо upstream ByteTrack используется CPU IoU tracker с удержанием ID при коротких перекрытиях. Работа в толпе не гарантирована. Правило курения не загружает обученный temporal classifier. Успешная компиляция и transport success не доказывают качество.

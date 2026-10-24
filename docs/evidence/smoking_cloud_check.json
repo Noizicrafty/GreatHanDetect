@@ -1,0 +1,277 @@
+{
+  "onnx_cpu": [
+    {
+      "image": "bus.jpg",
+      "persons": 3,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "backend": "onnx_cpu",
+          "total_s": 0.17582429999947635
+        },
+        "pose": {
+          "backend": "onnx_cpu",
+          "total_s": 0.013566800000262447
+        },
+        "total_s": 0.8637197000007291
+      }
+    },
+    {
+      "image": "public_example_1.jpg",
+      "persons": 2,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "backend": "onnx_cpu",
+          "total_s": 0.16284499999983382
+        },
+        "pose": {
+          "backend": "onnx_cpu",
+          "total_s": 0.02118239999981597
+        },
+        "total_s": 0.19082219999927474
+      }
+    },
+    {
+      "image": "public_example_2.jpg",
+      "persons": 1,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "backend": "onnx_cpu",
+          "total_s": 0.1847535999995671
+        },
+        "pose": {
+          "backend": "onnx_cpu",
+          "total_s": 0.01616250000006403
+        },
+        "total_s": 0.20748830000047747
+      }
+    },
+    {
+      "image": "public_example_3.jpg",
+      "persons": 0,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "backend": "onnx_cpu",
+          "total_s": 0.24006230000031792
+        },
+        "pose": {
+          "backend": "onnx_cpu",
+          "total_s": 0.02007320000029722
+        },
+        "total_s": 0.2705748999997013
+      }
+    },
+    {
+      "image": "public_example_4.jpg",
+      "persons": 1,
+      "objects": [
+        {
+          "name": "cigar",
+          "confidence": 0.8402602672576904,
+          "box": [
+            116.8631820678711,
+            48.67037582397461,
+            131.43502807617188,
+            62.8909797668457
+          ]
+        }
+      ],
+      "timings": {
+        "detector": {
+          "backend": "onnx_cpu",
+          "total_s": 0.19131309999920632
+        },
+        "pose": {
+          "backend": "onnx_cpu",
+          "total_s": 0.012566399999741407
+        },
+        "total_s": 0.2105994000003193
+      }
+    }
+  ],
+  "linq_amqp": [
+    {
+      "image": "bus.jpg",
+      "persons": 3,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "request_id": "54bd22757dc948afa1c4b02c3b69762c",
+          "backend": "linq_amqp",
+          "connect_s": 0.10450229999969451,
+          "serialize_s": 0.0016881999999895925,
+          "request_reply_s": 1.6677096000003075,
+          "deserialize_validate_s": 0.00016340000001946464,
+          "total_s": 1.7740635000000111,
+          "request_bytes": 2076709,
+          "response_bytes": 127840,
+          "ignored_responses": 0,
+          "worker_pid": "6",
+          "worker_inference_time_raw": 0.0032579998951405287
+        },
+        "pose": {
+          "request_id": "2474e13743954a9f811d701ef270a8c1",
+          "backend": "linq_amqp",
+          "connect_s": 1.7100000150094274e-05,
+          "serialize_s": 0.0013225000002421439,
+          "request_reply_s": 1.186157899999671,
+          "deserialize_validate_s": 0.0006368000003931229,
+          "total_s": 1.1881343000004563,
+          "request_bytes": 2076709,
+          "response_bytes": 795052,
+          "ignored_responses": 0,
+          "worker_pid": "7",
+          "worker_inference_time_raw": 0.00827100034803152
+        },
+        "total_s": 2.9672935999997208
+      }
+    },
+    {
+      "image": "public_example_1.jpg",
+      "persons": 2,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "request_id": "a92cfd0b0fec408ab5fb55545f39ef96",
+          "backend": "linq_amqp",
+          "connect_s": 1.4299999747890979e-05,
+          "serialize_s": 0.0014537999995809514,
+          "request_reply_s": 2.1494618000006085,
+          "deserialize_validate_s": 0.00010629999997036066,
+          "total_s": 2.1510361999999077,
+          "request_bytes": 2076709,
+          "response_bytes": 127840,
+          "ignored_responses": 0,
+          "worker_pid": "7",
+          "worker_inference_time_raw": 0.00813200045377016
+        },
+        "pose": {
+          "request_id": "2ffc31f2c260413882d814a433e4c1e4",
+          "backend": "linq_amqp",
+          "connect_s": 1.6699999832781032e-05,
+          "serialize_s": 0.0017508999999336083,
+          "request_reply_s": 2.2996876000006523,
+          "deserialize_validate_s": 0.0006107999997766456,
+          "total_s": 2.3020660000001953,
+          "request_bytes": 2076709,
+          "response_bytes": 795052,
+          "ignored_responses": 0,
+          "worker_pid": "6",
+          "worker_inference_time_raw": 0.003191000083461404
+        },
+        "total_s": 4.45808020000004
+      }
+    },
+    {
+      "image": "public_example_2.jpg",
+      "persons": 1,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "request_id": "fac4e167484e45cd832c91b77c8557f0",
+          "backend": "linq_amqp",
+          "connect_s": 2.2900000658410136e-05,
+          "serialize_s": 0.0020310999998400803,
+          "request_reply_s": 2.0939252999996825,
+          "deserialize_validate_s": 0.00013010000020585721,
+          "total_s": 2.096109400000387,
+          "request_bytes": 2076709,
+          "response_bytes": 127840,
+          "ignored_responses": 0,
+          "worker_pid": "7",
+          "worker_inference_time_raw": 0.014441999606788158
+        },
+        "pose": {
+          "request_id": "6b44ff09bb7c46699c1f8c3a67a0e990",
+          "backend": "linq_amqp",
+          "connect_s": 1.720000000204891e-05,
+          "serialize_s": 0.0018764999995255494,
+          "request_reply_s": 2.3717220999997153,
+          "deserialize_validate_s": 0.0004934000007779105,
+          "total_s": 2.374109200000021,
+          "request_bytes": 2076709,
+          "response_bytes": 795052,
+          "ignored_responses": 0,
+          "worker_pid": "7",
+          "worker_inference_time_raw": 0.0073990002274513245
+        },
+        "total_s": 4.4777696000001015
+      }
+    },
+    {
+      "image": "public_example_3.jpg",
+      "persons": 0,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "request_id": "7c8ab0ba306f42fa8e45ff8a3defe136",
+          "backend": "linq_amqp",
+          "connect_s": 1.6199999663513154e-05,
+          "serialize_s": 0.0015173000001595938,
+          "request_reply_s": 1.4480445999997755,
+          "deserialize_validate_s": 0.00011770000037358841,
+          "total_s": 1.4496957999999722,
+          "request_bytes": 2076709,
+          "response_bytes": 127839,
+          "ignored_responses": 0,
+          "worker_pid": "7",
+          "worker_inference_time_raw": 0.016081999987363815
+        },
+        "pose": {
+          "request_id": "45bb554fd23f474e91e6529d7efab151",
+          "backend": "linq_amqp",
+          "connect_s": 1.5100000382517464e-05,
+          "serialize_s": 0.001267599999664526,
+          "request_reply_s": 1.0929095999999845,
+          "deserialize_validate_s": 0.00042610000036802376,
+          "total_s": 1.0946184000003996,
+          "request_bytes": 2076709,
+          "response_bytes": 795052,
+          "ignored_responses": 0,
+          "worker_pid": "7",
+          "worker_inference_time_raw": 0.008023000322282314
+        },
+        "total_s": 2.5491005000003497
+      }
+    },
+    {
+      "image": "public_example_4.jpg",
+      "persons": 1,
+      "objects": [],
+      "timings": {
+        "detector": {
+          "request_id": "53b0cc05fb7645e5bac821215de5acf8",
+          "backend": "linq_amqp",
+          "connect_s": 1.5900000107649248e-05,
+          "serialize_s": 0.0017970999997487525,
+          "request_reply_s": 1.1663735000001907,
+          "deserialize_validate_s": 0.00011170000016136328,
+          "total_s": 1.1682982000002085,
+          "request_bytes": 2076709,
+          "response_bytes": 127839,
+          "ignored_responses": 0,
+          "worker_pid": "7",
+          "worker_inference_time_raw": 0.007317999843508005
+        },
+        "pose": {
+          "request_id": "ebc6b812c8ac4b51bbd61bc2ee661362",
+          "backend": "linq_amqp",
+          "connect_s": 1.4299999747890979e-05,
+          "serialize_s": 0.0012306999997235835,
+          "request_reply_s": 1.1265904000001683,
+          "deserialize_validate_s": 0.0004318000001148903,
+          "total_s": 1.1282671999997547,
+          "request_bytes": 2076709,
+          "response_bytes": 795052,
+          "ignored_responses": 0,
+          "worker_pid": "6",
+          "worker_inference_time_raw": 0.02905699983239174
+        },
+        "total_s": 2.3015859999995882
+      }
+    }
+  ]
+}

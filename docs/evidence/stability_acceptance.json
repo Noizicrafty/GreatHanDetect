@@ -1,0 +1,54 @@
+{
+  "status": {
+    "state": "completed",
+    "message": "Видео завершено",
+    "run_id": "19b2b3b9761b4f178cf46c3f6fe44f26",
+    "backend": "linq_amqp",
+    "scenario": "danger_zone",
+    "camera_id": "linq-stability",
+    "source_mode": "realtime",
+    "metrics": {
+      "processed_frames": 299,
+      "elapsed_wall_s": 601.1791966000001,
+      "processing_fps": 0.4973558660895286,
+      "source_span_s": 599.8000000000001,
+      "dropped_frames": 2701,
+      "inference": {
+        "p50_s": 1.0654652999992322,
+        "p95_s": 1.7309765299999522,
+        "n": 299
+      },
+      "pipeline": {
+        "p50_s": 1.0881796000003305,
+        "p95_s": 1.7508498899995166,
+        "n": 299
+      },
+      "confirmation_to_journal": {
+        "n": 102,
+        "p50_s": 0.034430950000114535,
+        "p95_s": 0.1769651249998322
+      },
+      "new_events": 102,
+      "timing_scope": "inference includes preprocessing/transport/CPU decoder; confirmation_to_journal excludes temporal confirmation and UI polling"
+    },
+    "model_version": "person:5d3a9bf38c04380b6acc3396f828779bd181f50d92b20abefe4044d18007e840",
+    "source_fps": 5.0,
+    "source_fps_estimated": false,
+    "source_s": 599.8000000000001,
+    "frame_id": 3000,
+    "persons": 0,
+    "source_time_basis": "source_pts"
+  },
+  "delivery": {
+    "n": 102,
+    "p50_s": 0.43347650000000004,
+    "p95_s": 0.9373318999999994,
+    "source_confirmation_to_display_ack": {
+      "n": 102,
+      "p50_s": 1.481,
+      "p95_s": 2.6175499999999996,
+      "scope": "realtime files only; source confirmation PTS anchored to run wall time through inference, journal, UI polling and acknowledgement"
+    },
+    "scope": "event creation to server receipt of browser display acknowledgement; includes polling and return trip"
+  }
+}

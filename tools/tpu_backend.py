@@ -22,9 +22,6 @@ class TPUDualSession:
     @staticmethod
     def _choose(result,expected):
         if expected in result: return result[expected]
-        if len(result)==1:
-            print('WARNING: TPU output name differs:',list(result),'->',expected)
-            return next(iter(result.values()))
         raise ValueError(f'Expected TPU output {expected!r}, found {list(result)}.')
     def detect(self,arr): return self._choose(self.det_infer.sync({self.det_input:arr}),self.det_output)
     def pose(self,arr): return self._choose(self.pose_infer.sync({self.pose_input:arr}),self.pose_output)

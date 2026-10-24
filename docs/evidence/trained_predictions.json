@@ -1,0 +1,392 @@
+{
+  "checkpoint": "last.pt",
+  "checkpoint_sha256": "5b9df5d26785a3848643b7603036c2219dea4aedd6a19373dadaaa56182e519d",
+  "completed_epochs": 26,
+  "checkpoint_epoch_zero_based": 25,
+  "inference_only": true,
+  "training_resumed": false,
+  "backend": "PyTorch CUDA",
+  "imgsz": 640,
+  "confidence_threshold": 0.25,
+  "nms_iou": 0.7,
+  "sample_selection": "random.Random(42).sample(sorted(test_paths), 9)",
+  "dataset_test_count": 122,
+  "classes": {
+    "0": "cigarette",
+    "1": "person",
+    "2": "smoke",
+    "3": "vape"
+  },
+  "records": [
+    {
+      "sample_id": 1,
+      "source": "smoking_0056_jpg.rf.ef48a4b0eb6257b954fde5f5222afb63.jpg",
+      "source_sha256": "9368f9ef9ed345e038d604c7218e192dd58a17300c9c7ddefbd32ccdad1ec1aa",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.7416946291923523,
+          "xyxy": [
+            332.7586669921875,
+            318.0689697265625,
+            435.6334228515625,
+            375.1107177734375
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "person",
+          "confidence": 0.6553791761398315,
+          "xyxy": [
+            53.1641845703125,
+            83.166259765625,
+            422.68170166015625,
+            556.5637817382812
+          ]
+        },
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.6449863314628601,
+          "xyxy": [
+            485.12030029296875,
+            349.33978271484375,
+            497.62396240234375,
+            429.08416748046875
+          ]
+        },
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.36066725850105286,
+          "xyxy": [
+            481.4595031738281,
+            348.69830322265625,
+            499.7995910644531,
+            436.07098388671875
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            332.25,
+            304.5,
+            435.74999999999994,
+            378.5
+          ]
+        },
+        {
+          "class_id": 1,
+          "xyxy": [
+            125.5,
+            91.00000000000001,
+            410.5,
+            553.0
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 2,
+      "source": "Y2Mate_is-People-Cigarette-Smoking-HD-Stock-Video-Free-stock-footage-No-Copyright-All-Video-Free-6OvL4ND5N_M-720p-1658949280708_mp4-309_jpg.rf.21e457e74ef864154889037638c4387d.jpg",
+      "source_sha256": "3cc4ded59466eea1feb2293ef09d616c00a8e629bdfcb190a3621e2dbe2a7bbb",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.8263201713562012,
+          "xyxy": [
+            347.5613708496094,
+            268.37451171875,
+            389.2895812988281,
+            349.7593994140625
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            344.75,
+            267.5,
+            389.25000000000006,
+            351.5
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 3,
+      "source": "294_strawberry_jpg.rf.372acda4d0243cd46032a92bf57ccd33.jpg",
+      "source_sha256": "ec644fa94670046fa855b8b93835fb9971a6634b5bc86c0b7c3ec706e67cd034",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 1,
+          "class_name": "person",
+          "confidence": 0.8740212917327881,
+          "xyxy": [
+            187.01605224609375,
+            0.0,
+            639.361328125,
+            639.67724609375
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            440.75,
+            127.25,
+            474.25,
+            252.75
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 4,
+      "source": "smoking_0455_jpg.rf.949d1f489cf8e419af536da3b49b1f22.jpg",
+      "source_sha256": "8b1add74e9454135b1462cf0119432912da3ce115ce0fab94dace88b04954b04",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 1,
+          "class_name": "person",
+          "confidence": 0.8796960115432739,
+          "xyxy": [
+            1.3232421875,
+            51.249755859375,
+            638.3446655273438,
+            640.0
+          ]
+        },
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.6257600784301758,
+          "xyxy": [
+            396.970458984375,
+            221.1513671875,
+            541.59814453125,
+            263.879638671875
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            403.5,
+            221.5,
+            544.5,
+            263.5
+          ]
+        },
+        {
+          "class_id": 1,
+          "xyxy": [
+            42.5,
+            65.0,
+            468.5,
+            640.0
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 5,
+      "source": "Y2Mate_is-People-Cigarette-Smoking-HD-Stock-Video-Free-stock-footage-No-Copyright-All-Video-Free-6OvL4ND5N_M-720p-1658949280708_mp4-596_jpg.rf.57ce05904f1574d64d35787b9fc90453.jpg",
+      "source_sha256": "a7739ababa85ef6cc3aa9e6b6afc90657c1de0760fbc7e5d369865ffea32518b",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.42152470350265503,
+          "xyxy": [
+            119.8458480834961,
+            442.24261474609375,
+            197.07998657226562,
+            494.30072021484375
+          ]
+        },
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.27713775634765625,
+          "xyxy": [
+            120.35191345214844,
+            440.40179443359375,
+            210.6012420654297,
+            503.6461181640625
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            108.5,
+            427.75,
+            196.5,
+            503.24999999999994
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 6,
+      "source": "Y2Mate_is-People-Cigarette-Smoking-HD-Stock-Video-Free-stock-footage-No-Copyright-All-Video-Free-6OvL4ND5N_M-720p-1658949280708_mp4-503_jpg.rf.b6ffb00989c07c05c44f4d41ee290cd7.jpg",
+      "source_sha256": "cf6f249f106610ed21d275785fecf182f66a18e2e796200a258791d6c8dd73e1",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.7230244278907776,
+          "xyxy": [
+            105.977294921875,
+            404.674072265625,
+            178.72808837890625,
+            430.31298828125
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            96.74999999999999,
+            395.25000000000006,
+            192.25,
+            438.75
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 7,
+      "source": "Y2Mate_is-People-Cigarette-Smoking-HD-Stock-Video-Free-stock-footage-No-Copyright-All-Video-Free-6OvL4ND5N_M-720p-1658949280708_mp4-496_jpg.rf.7a256ef49837a191f52a039fdfe4ecb2.jpg",
+      "source_sha256": "a65f22e69fde5d5a4c46c44366428c1efa8ae16604f2e5a5a4a25554be0be9ca",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.7038117051124573,
+          "xyxy": [
+            82.74935913085938,
+            419.75384521484375,
+            160.10256958007812,
+            450.11700439453125
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            77.0,
+            415.25,
+            176.0,
+            455.74999999999994
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 8,
+      "source": "Y2Mate_is-People-Cigarette-Smoking-HD-Stock-Video-Free-stock-footage-No-Copyright-All-Video-Free-6OvL4ND5N_M-720p-1658949280708_mp4-333_jpg.rf.80f01b62556548669ad0e0616f900116.jpg",
+      "source_sha256": "e87c0a7eb45abdfccacec04a5509ae3bed1fbdb82e5e9630a867dab69c321423",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.7568496465682983,
+          "xyxy": [
+            386.0105285644531,
+            270.23272705078125,
+            425.7750549316406,
+            343.38092041015625
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            383.00000000000006,
+            271.25,
+            426.0,
+            342.75
+          ]
+        }
+      ]
+    },
+    {
+      "sample_id": 9,
+      "source": "Y2Mate_is-People-Cigarette-Smoking-HD-Stock-Video-Free-stock-footage-No-Copyright-All-Video-Free-6OvL4ND5N_M-720p-1658949280708_mp4-307_jpg.rf.9085999563149f192d6b8ad1a2a88f11.jpg",
+      "source_sha256": "2f6fec92a9edacb0b8f03a24136242f86c4b9d44db771774f9c64a19ed1e203c",
+      "size": [
+        640,
+        640
+      ],
+      "predictions": [
+        {
+          "class_id": 0,
+          "class_name": "cigarette",
+          "confidence": 0.823932409286499,
+          "xyxy": [
+            346.883056640625,
+            261.88330078125,
+            389.0435791015625,
+            348.71307373046875
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "class_id": 0,
+          "xyxy": [
+            345.25,
+            261.25,
+            387.75,
+            347.75
+          ]
+        }
+      ]
+    }
+  ]
+}

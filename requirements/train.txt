@@ -1,0 +1,7 @@
+ultralytics==8.4.186
+numpy==1.26.4
+opencv-python==4.11.0.86
+onnx==1.16.2
+onnxruntime==1.29.0
+PyYAML>=6
+# Install matching CUDA torch/torchvision separately from the official PyTorch index.

@@ -11,5 +11,6 @@ import sys
 if sys.version_info[:3] != (3,12,11):
     sys.exit('Vendor documentation requires Python 3.12.11')
 PY
-python -m pip install -r "$PACKETS/requirements.txt"
+# Vendor requirements contain relative wheel filenames.
+(cd "$PACKETS" && python -m pip install -r requirements.txt)
 python tools/doctor.py

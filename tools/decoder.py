@@ -2,7 +2,10 @@
 from __future__ import annotations
 import cv2
 import numpy as np
-from common import unletterbox_xyxy
+try:
+    from .common import unletterbox_xyxy
+except ImportError:  # Direct execution of legacy tools.
+    from common import unletterbox_xyxy
 
 def tensor_nxc(raw,features):
     a=np.asarray(raw)

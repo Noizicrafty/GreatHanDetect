@@ -1,0 +1,55 @@
+{
+  "status": {
+    "state": "completed",
+    "message": "Видео завершено",
+    "run_id": "ff178438ed1e49a59aa7415c5937b68a",
+    "backend": "linq_amqp",
+    "scenario": "danger_zone",
+    "camera_id": "linq-yolo8",
+    "demo_additional_enabled": false,
+    "source_mode": "realtime",
+    "metrics": {
+      "processed_frames": 23,
+      "elapsed_wall_s": 23.612215900000592,
+      "processing_fps": 0.974072069195311,
+      "source_span_s": 22.400000000000002,
+      "dropped_frames": 92,
+      "inference": {
+        "p50_s": 0.8753808999990724,
+        "p95_s": 1.2078901099990615,
+        "n": 23
+      },
+      "pipeline": {
+        "p50_s": 0.9136156999993545,
+        "p95_s": 1.2149350399999093,
+        "n": 23
+      },
+      "confirmation_to_journal": {
+        "n": 4,
+        "p50_s": 0.03260229999978037,
+        "p95_s": 0.0576979499996014
+      },
+      "new_events": 4,
+      "timing_scope": "inference includes preprocessing/transport/CPU decoder; confirmation_to_journal excludes temporal confirmation and UI polling"
+    },
+    "model_version": "person:5d3a9bf38c04380b6acc3396f828779bd181f50d92b20abefe4044d18007e840",
+    "source_fps": 5.0,
+    "source_fps_estimated": false,
+    "source_s": 22.400000000000002,
+    "frame_id": 113,
+    "persons": 0,
+    "source_time_basis": "source_pts"
+  },
+  "delivery": {
+    "n": 4,
+    "p50_s": 0.1615955,
+    "p95_s": 0.25525014999999995,
+    "source_confirmation_to_display_ack": {
+      "n": 4,
+      "p50_s": 1.0470000000000002,
+      "p95_s": 1.18295,
+      "scope": "realtime files only; source confirmation PTS anchored to run wall time through inference, journal, UI polling and acknowledgement"
+    },
+    "scope": "event creation to server receipt of browser display acknowledgement; includes polling and return trip"
+  }
+}
