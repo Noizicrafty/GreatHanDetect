@@ -1,0 +1,29 @@
+{
+  "release": "https://github.com/Noizicrafty/GreatHanDetect/releases/tag/models-2026-10-25",
+  "artifacts": [
+    {
+      "name": "last.pt",
+      "bytes": 31795559,
+      "sha256": "5b9df5d26785a3848643b7603036c2219dea4aedd6a19373dadaaa56182e519d",
+      "url": "https://github.com/Noizicrafty/GreatHanDetect/releases/download/models-2026-10-25/last.pt"
+    },
+    {
+      "name": "smoking_trained26_416_o1.tpu",
+      "bytes": 2885502,
+      "sha256": "f2920f42e078ca3e3e7df2bc6755c96a4fa823cf42873816c0b236fcaa048b5c",
+      "url": "https://github.com/Noizicrafty/GreatHanDetect/releases/download/models-2026-10-25/smoking_trained26_416_o1.tpu"
+    },
+    {
+      "name": "smoking_trained26_416_o5.tpu",
+      "bytes": 2935212,
+      "sha256": "92c8bfa864f60544ca7672293ff53f264bd3738d453fd535d893d7827278ac99",
+      "url": "https://github.com/Noizicrafty/GreatHanDetect/releases/download/models-2026-10-25/smoking_trained26_416_o5.tpu"
+    },
+    {
+      "name": "GreatHanDetect_TPU_proofs_2026-10-25.zip",
+      "bytes": 7017918,
+      "sha256": "ec20e9377893537cb766daccbffb28759d767c85d9c8c00da5ad41f1159cdf6a",
+      "url": "https://github.com/Noizicrafty/GreatHanDetect/releases/download/models-2026-10-25/GreatHanDetect_TPU_proofs_2026-10-25.zip"
+    }
+  ]
+}

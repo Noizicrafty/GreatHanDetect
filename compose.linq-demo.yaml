@@ -1,0 +1,35 @@
+name: linq-demo
+services:
+  demo:
+    image: greathan-linq-demo:2026-10-24
+    build:
+      context: .
+      dockerfile: deploy/linq-demo/Dockerfile
+    container_name: linq-safety-demo
+    restart: unless-stopped
+    environment:
+      PUBLIC_ORIGIN: https://linq.user-link.xyz
+    ports:
+      - "127.0.0.1:18090:8090"
+    volumes:
+      - linq_demo_data:/data
+    cpus: 4
+    mem_limit: 3g
+    pids_limit: 128
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8090/api/demo/state',timeout=4).read()"]
+      interval: 20s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  linq_demo_data:
+    name: linq_demo_data

@@ -1,0 +1,48 @@
+name: greathan-check
+
+services:
+  demo:
+    image: greathan-demo:local
+    build:
+      context: .
+      dockerfile: deploy/linq-demo/Dockerfile
+    init: true
+    restart: unless-stopped
+    ports:
+      - "${DEMO_BIND:-127.0.0.1}:${DEMO_PORT:-8090}:8090"
+    environment:
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-}
+      LINQ_UPSTREAM_URL: ${LINQ_UPSTREAM_URL:-}
+    volumes:
+      - demo-data:/data
+    mem_limit: 3g
+    cpus: 4
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, python, tools/check_demo.py, --health-only]
+      interval: 15s
+      timeout: 5s
+      start_period: 30s
+      retries: 4
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  check:
+    image: greathan-demo:local
+    profiles: [check]
+    depends_on:
+      demo:
+        condition: service_healthy
+    network_mode: service:demo
+    entrypoint: [python, tools/check_demo.py]
+    command: []
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+
+volumes:
+  demo-data:

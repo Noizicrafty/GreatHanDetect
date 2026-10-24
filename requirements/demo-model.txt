@@ -1,0 +1,4 @@
+ultralytics==8.4.186
+numpy==1.26.4
+opencv-python==4.11.0.86
+# Install CPU torch==2.9.1 and torchvision==0.24.1 separately; see docs/LOCAL_DEMO_RU.md.

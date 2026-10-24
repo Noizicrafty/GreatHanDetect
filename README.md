@@ -1,64 +1,79 @@
-# GreatHanDetect
+# GreatHanDetect · демо LinQ Safety
 
-Video safety monitoring prototype for **LinQ TPU Framework 2026.9.45 / TPU_H1M**: inference, tracking, temporal rules, evidence, a persistent event journal and a Russian operator console.
+Прототип видеоаналитики для хакатона LinQ: интерфейс оператора, журнал событий, PDF/XLSX, проверка изображения и веб-камера с детекцией сигареты возле губ. **Основной запуск для кейс-холдера — Docker Compose ниже.** Обучение при установке и запуске не выполняется.
 
-**[Русская документация и запуск →](README_RU.md)** · [Documentation index](docs/README.md) · [Verified status](docs/BUILD_STATUS.md) · [Application guide](docs/APPLICATION_RU.md)
+[Открытое демо](https://linq.user-link.xyz/) · [Проверка и развёртывание](docs/REVIEWER_RU.md) · [Пруфы TPU](docs/TPU_RESULTS_RU.md) · [Все документы](docs/README.md)
 
-## Current state — 24 October 2026
+## Запуск за три команды
 
-- **Verified end to end:** people in a configured danger zone using actual remote LinQ AMQP inference, evidence, deduplicated episodes and browser notifications.
-- **Implemented but not accepted:** smoking pipeline using object detection, pose and temporal heuristics. YOLO-World and YOLO11n-Pose compile and execute on LinQ; the quantized YOLO-World detector currently loses detections against its CPU reference.
-- **Separate trained detector:** YOLOv8n trained for 26 completed epochs before the run was stopped. The illustrations below use that checkpoint through local PyTorch inference. These weights have not been integrated into the application or validated on TPU.
-- **DEMO only:** helmet, vest and fall. No corresponding model executes; simulated events are marked and excluded from real-event metrics.
-- **59 automated checks passed locally.** A 10-minute real-LinQ transport/application run was completed on repeated public still images. Real CCTV accuracy and production readiness remain unverified.
-
-## Console demo without models or VPN
-
-Install Python 3.12 and Git, clone the repository and run from its root:
+Нужны Git, Docker Engine/Desktop с запущенным Linux daemon и **Docker Compose ≥ 2.20**. Проверенная платформа — Linux x86_64; на Windows используйте Docker Desktop / WSL2 с Linux containers. Рекомендуется 4 CPU, 6 ГБ RAM и 6 ГБ свободного места. Для первой сборки нужен интернет: Python/PyTorch и веса скачиваются автоматически.
 
 ```bash
-python -m venv .venv
-# Activate .venv for your shell.
-python -m pip install -r requirements/application.txt
-python tools/make_app_demo.py
-python -m greathan --config assets/demo/replay_config.json --data results/qa
+git clone https://github.com/Noizicrafty/GreatHanDetect.git
+cd GreatHanDetect
+docker compose up -d --build --wait
 ```
 
-Open **http://127.0.0.1:8080/** and start processing. This explicitly marked replay checks the application, not a neural network. Windows: `setup_application_windows.bat`, `START_APPLICATION_WINDOWS.bat`. Linux: `bash setup_application.sh`, `bash start_application.sh`.
+Открыть **[http://127.0.0.1:8090/](http://127.0.0.1:8090/)**. Никаких ручных копирований из `Downloads`, локальных Python-окружений или VPN для базового демо не требуется. Веса фиксированы в [GitHub Release](https://github.com/Noizicrafty/GreatHanDetect/releases/tag/models-2026-10-25), SHA-256 проверяется при сборке. Повторная сборка использует Docker cache.
 
-For actual inference, obtain the separate artifacts and follow [deployment instructions](docs/DEPLOYMENT_RU.md). Git contains source, tests, documentation, compact evidence and real prediction illustrations. Weights, ONNX/TPU binaries, datasets, proprietary SDK packages, VPN profiles and credentials are supplied separately.
-
-## Actual predictions after 26 epochs
-
-Nine test images selected with seed 42. Boxes and confidence values are direct model outputs at threshold 0.25. Examples include missed objects; these are not event-accuracy measurements.
-
-![Actual predictions after 26 epochs](docs/images/predictions_epoch26.jpg)
-
-[Checkpoint and inference provenance](docs/TRAINED_MODEL_RESULTS_RU.md) · [Measured LinQ results](docs/INTERMEDIATE_REPORT_RU.md) · [Remaining acceptance work](docs/ACCEPTANCE_CHECKLIST.md)
-
-## Architecture
-
-```text
-Video -> LinQ AMQP / ONNX CPU -> decode + NMS -> IoU tracks
-      -> danger-zone or smoking temporal rule
-      -> episode + evidence -> SQLite + notifications -> operator browser
-```
-
-`greathan/` is the application; `tools/` contains preparation, calibration, compilation, reference inference and evaluation utilities. Older direct-device scripts remain for engineering work and are separate from the remote-AMQP application. [Architecture and API](docs/ARCHITECTURE_RU.md).
-
-## Tests
+Проверить работоспособность автоматически:
 
 ```bash
-python -m pip install -r requirements/runtime.txt
-python tools/bootstrap_source.py
-python -m compileall -q greathan tools tests
-python -m unittest discover -s tests -v
+docker compose --profile check run --rm check
 ```
 
-The upstream smoking rule is fetched separately at commit `e7bba89b0336119363cf4d9f9e31b2e4a67e9233`. Tests do not require model binaries or TPU access. Training is optional and currently stopped; setup and CI never start training.
+Команда проверяет пять страниц, ресурсы веб-камеры, PDF с кириллицей, XLSX/ZIP, **настоящий CPU-инференс checkpoint после 26 эпох**, сигарету на предоставленном примере и отрицательный пустой кадр. Проверка не добавляет события в журнал. Успех: JSON с `"passed": true`, exit code 0. Healthcheck проверяет HTTP и наличие весов; именно отдельная команда выше проверяет исполнение модели.
 
-## Attribution and limits
+## Что показать
 
-The project adapts [clyv/smoking-detection](https://github.com/clyv/smoking-detection). Images/data: [Richie Lab / smoking-tasfx v4](https://universe.roboflow.com/richie-lab/smoking-tasfx/dataset/4), CC BY 4.0 according to the supplied export. [Third-party notices](docs/THIRD_PARTY_NOTICES.md). No blanket relicensing of upstream code, Ultralytics, models, datasets or SDK is claimed.
+1. **Трансляции:** воспроизведение предоставленных демонстрационных записей с готовыми рамками. Это иллюстрация интерфейса.
+2. **«Проверить кадр» → «Использовать готовый пример»:** реальный YOLOv8n/PyTorch CPU, четыре класса `cigarette/person/smoke/vape`; результат поступает в журнал.
+3. **«Веб-камера» → «Запустить»:** разрешить доступ к камере, держать лицо достаточно близко. Модель сопоставляет сигарету с областью губ; для срабатывания нужны 3 последовательных результата за ≥0,5 с. Звук и видео не записываются, выбранный кадр сохраняется отдельной кнопкой. Технические сведения раскрываются в «О проверке».
+4. **Уведомления:** подтвердить/отклонить событие; обновить страницу и проверить сохранение решения.
+5. **Аналитика / Отчёт:** фильтры, XLSX и актуальный PDF текущего журнала.
 
-No verified 30 FPS, multi-camera production deployment or accepted smoking accuracy on industrial CCTV are claimed.
+## CPU и LinQ TPU
+
+| Режим | Что нужно | Что действительно исполняется |
+|---|---|---|
+| Обычный `docker compose up` | Docker, интернет на первую сборку | Обученный checkpoint на CPU; доступен офлайн после сборки |
+| Compose с `compose.tpu.yaml` | Сеть организаторов/VPN, codec wheel, брокер и `.tpu` в `/auto/cache/...` | Та же модель после PTQ через удалённый LinQ AMQP |
+| Консоль `python -m greathan` | Отдельные configs/артефакты | Инженерный видео-конвейер зоны/трекинга; [инструкция](docs/DEPLOYMENT_RU.md) |
+
+**TPU не эмулируется в Docker.** При его отсутствии CPU доступен явно, ошибки TPU не подменяются успешным CPU-ответом. Подключение своего сервиса или TPU-sidecar: [инструкция для кейс-холдера](docs/REVIEWER_RU.md#подключение-linq-tpu).
+
+На общем сервисе LinQ измерены 13,58 RPC/с последовательно и 27,88 RPC/с при четырёх запросах; полный публичный браузерный путь — **4,44 кадра/с** на 83 кадрах виртуальной камеры с повторённым изображением. Это измерения разных участков; они не доказывают скорость одного физического чипа или качество на CCTV. [Методика, ноутбук и ограничения](docs/TPU_RESULTS_RU.md).
+
+## Остановка, данные и обновление
+
+```bash
+docker compose ps
+docker compose logs --tail 100 demo
+docker compose down
+# Обновление из чистой рабочей копии:
+bash deploy/linq-demo/autodeploy.sh
+```
+
+Журнал SQLite и выбранные кадры находятся в named volume `greathan-check_demo-data` и переживают `down`/пересборку. **`docker compose down -v` удаляет эту историю.** Если порт занят, задайте `DEMO_PORT=8091` в `.env` (шаблон `.env.example`). Автоматическая проверка в [GitHub Actions](https://github.com/Noizicrafty/GreatHanDetect/actions) собирает чистый клон; отдельный ручной workflow SSH-деплоя настраивается через secrets, без паролей в репозитории.
+
+## Ограничения
+
+- Каски, тросы и бег на исходных карточках — **DEMO**, не подключённые PPE-модели. Реальные кадры обученного checkpoint отмечаются отдельно.
+- Проверяется положение сигареты у губ, а не доказанный факт курения. Для производственного качества нужны настоящие видеоролики и отдельная приёмка; PTQ пока ухудшает часть детекций.
+- Веб-камера работает на **localhost или HTTPS**. При размещении на сервере используйте HTTPS либо SSH-туннель, как описано в инструкции.
+- Сохранение срабатывания веб-камеры в журнал включает отдельную CPU-проверку выбранного кадра.
+- Демо не имеет авторизации/разделения пользователей. По умолчанию порт опубликован только на loopback; публичный стенд требует контролируемого доступа и reverse proxy.
+
+## Где что лежит
+
+| Путь | Назначение |
+|---|---|
+| `compose.yaml`, `compose.tpu.yaml` | Проверяемый запуск демо и опциональный TPU-sidecar |
+| `demo/ff/` | Пять экранов, ресурсы и веб-камера |
+| `tools/run_presentation_demo.py`, `presentation_predict.py` | HTTP/SQLite/экспорты и CPU-инференс |
+| `tools/serve_webcam_tpu.py` | JPEG → LinQ → NMS → JSON |
+| `deploy/linq-demo/` | Dockerfiles, обновление, примеры Nginx |
+| `greathan/`, `configs/`, `tests/` | Инженерный видео-конвейер, настройки и unit tests |
+| `docs/`, `docs/evidence/` | Методика, отчёты, хеши и измерения |
+
+Исходный датасет, веса, SDK, VPN-профили и секреты не хранятся в Git. Разрешённые артефакты модели и пруфы опубликованы в Release отдельно. [Происхождение и лицензии](docs/THIRD_PARTY_NOTICES.md).

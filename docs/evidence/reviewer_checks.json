@@ -1,0 +1,25 @@
+{
+  "date_moscow": "2026-10-25",
+  "scope": "Inference-only delivery; no training",
+  "local_tests": {
+    "application_and_proxy": 64,
+    "presentation_http_pdf_xlsx": 27,
+    "resident_webcam": 5,
+    "webcam_logic": 8
+  },
+  "docker": {
+    "platform": "Linux x86_64",
+    "clean_source_build": true,
+    "model_download_sha256_verified": true,
+    "smoke_checks_passed": 13,
+    "journal_unchanged": true
+  },
+  "browser": {
+    "virtual_camera_actual_cpu_inference": true,
+    "technical_details_collapsed": true,
+    "camera_released_on_stop": true,
+    "mobile_width": 390,
+    "horizontal_overflow": false
+  },
+  "optional_tpu": "Organiser codec, credentials, network and server-side program required. Existing TPU measurements are in TPU_RESULTS_RU.md."
+}

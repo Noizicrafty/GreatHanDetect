@@ -1,0 +1,40 @@
+# Requires the organiser network/VPN, codec wheel and a server-side .tpu file.
+# docker compose -f compose.yaml -f compose.tpu.yaml up -d --build --wait
+services:
+  demo:
+    environment:
+      LINQ_UPSTREAM_URL: http://tpu:8094
+    depends_on:
+      tpu:
+        condition: service_healthy
+  tpu:
+    image: greathan-tpu:local
+    build:
+      context: .
+      dockerfile: deploy/linq-demo/Dockerfile.tpu
+    init: true
+    restart: unless-stopped
+    environment:
+      LINQ_AMQP_HOST: ${LINQ_AMQP_HOST:-10.0.114.30}
+      LINQ_AMQP_PORT: ${LINQ_AMQP_PORT:-5672}
+      LINQ_AMQP_EXCHANGE: ${LINQ_AMQP_EXCHANGE:-tpu.direct}
+      LINQ_AMQP_ROUTING_KEY: ${LINQ_AMQP_ROUTING_KEY:-input}
+      LINQ_AMQP_VHOST: ${LINQ_AMQP_VHOST:-/}
+      LINQ_AMQP_USER: ${LINQ_AMQP_USER:?Set organiser broker username in .env}
+      LINQ_AMQP_PASSWORD: ${LINQ_AMQP_PASSWORD:?Set organiser broker password in .env}
+      LINQ_REMOTE_PROGRAM: ${LINQ_REMOTE_PROGRAM:?Set organiser-side /auto/cache/... program path in .env}
+    mem_limit: 1g
+    cpus: 2
+    pids_limit: 64
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8094/health',timeout=3).read()"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

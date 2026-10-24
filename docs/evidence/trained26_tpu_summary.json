@@ -1,0 +1,38 @@
+{
+  "date_moscow": "2026-10-25",
+  "checkpoint_sha256": "5b9df5d26785a3848643b7603036c2219dea4aedd6a19373dadaaa56182e519d",
+  "program_sha256": "f2920f42e078ca3e3e7df2bc6755c96a4fa823cf42873816c0b236fcaa048b5c",
+  "target": "TPU_H1M",
+  "training_started": false,
+  "rpc_scope": "Shared organiser service, preprocessed fixed tensor. Physical TPU count unknown.",
+  "O1_rpc_fps": [
+    13.57782186036095,
+    20.50845764875671,
+    27.877484551724443
+  ],
+  "O5_rpc_fps": [
+    7.238584463354293,
+    13.64215892096311,
+    19.83201174073674
+  ],
+  "jpeg_pipeline_fps": 6.884908182985424,
+  "browser_before_fps": 2.6117072616817123,
+  "browser_after_fps": 4.443944422568487,
+  "browser_after_frames": 83,
+  "browser_fixture": "Chromium fake webcam, repeated supplied diagnostic image #4; not a real-person quality test",
+  "quality_diagnostic": {
+    "cpu": {
+      "matched_gt": 9,
+      "unmatched_predictions": 1,
+      "missed_gt": 0,
+      "scope": "Nine existing test images only; cigarette class, conf .25, one-to-one IoU .5. Not final accuracy."
+    },
+    "tpu": {
+      "matched_gt": 8,
+      "unmatched_predictions": 7,
+      "missed_gt": 1,
+      "scope": "Nine existing test images only; cigarette class, conf .25, one-to-one IoU .5. Not final accuracy."
+    },
+    "O1_O5_identical_on_9_outputs": true
+  }
+}

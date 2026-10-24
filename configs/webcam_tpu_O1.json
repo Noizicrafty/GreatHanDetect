@@ -1,0 +1,45 @@
+{
+  "status": "runtime_verified_shared_organiser_service",
+  "checkpoint_sha256": "5b9df5d26785a3848643b7603036c2219dea4aedd6a19373dadaaa56182e519d",
+  "epochs": 26,
+  "onnx_sha256": "8bbda98f1a48a0f496a181c73c3cdcda581ac6a3af2c4b58758ac029aa8916eb",
+  "program_sha256": "f2920f42e078ca3e3e7df2bc6755c96a4fa823cf42873816c0b236fcaa048b5c",
+  "program": "/auto/cache/hackathon61961/smoking_trained26_416_o1.tpu",
+  "inputs": {
+    "images": {
+      "shape": [
+        1,
+        3,
+        416,
+        416
+      ],
+      "dtype": "float32"
+    }
+  },
+  "outputs": {
+    "output0": {
+      "shape": [
+        1,
+        8,
+        3549
+      ],
+      "dtype": "float32"
+    }
+  },
+  "classes": [
+    "cigarette",
+    "person",
+    "smoke",
+    "vape"
+  ],
+  "input_size": 416,
+  "target": "TPU_H1M",
+  "preset": "O1",
+  "training_started": false,
+  "calibration_sha256": "466311fd1c0f7ec2efb3b0199575c1662a7ae58c1b20dbf9f38e5d373a6246b8",
+  "duration_s": 78.9488480091095,
+  "renaming": {
+    "images": "images",
+    "output0": "output0"
+  }
+}

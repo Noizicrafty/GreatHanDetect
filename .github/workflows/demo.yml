@@ -1,0 +1,30 @@
+name: Demo — clean Docker deployment
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compose-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Webcam geometry, evidence and ordered frames
+        run: node --test tools/test_webcam_logic.mjs
+      - name: Validate Compose
+        run: docker compose config --quiet
+      - name: Build and start from clean checkout
+        run: docker compose up -d --build --wait --wait-timeout 120
+      - name: Real checkpoint, pages, PDF, XLSX, ZIP and journal
+        run: docker compose --profile check run --rm check
+      - name: Logs
+        if: always()
+        run: docker compose logs --no-color --tail 150
+      - name: Stop
+        if: always()
+        run: docker compose down

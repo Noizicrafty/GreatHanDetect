@@ -1,0 +1,12 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.png -text
+*.jpg -text
+*.gif -text
+*.pdf -text
+*.wasm -text
+*.task -text
+# Keep upstream MediaPipe assets byte-for-byte for manifest checksums.
+demo/ff/assets/mediapipe/** -text
+demo/ff/assets/mediapipe/manifest.json text eol=lf

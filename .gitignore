@@ -5,6 +5,7 @@ __pycache__/
 .pytest_cache/
 .env
 .env.*
+!.env.example
 *.key
 *.pem
 vendor/**
@@ -43,3 +44,10 @@ assets/**
 *.sqlite
 auth.txt
 management.txt
+.playwright-cli/
+/demo/ff/_webcam_qa/
+/output/playwright/
+/deploy/linq-demo/connect-jupyter-tpu.py
+/deploy/linq-demo/update-webcam.py
+/deploy/linq-demo/verify-tpu-release.py
+/model/
