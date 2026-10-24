@@ -21,5 +21,11 @@
     "mobile_width": 390,
     "horizontal_overflow": false
   },
-  "optional_tpu": "Organiser codec, credentials, network and server-side program required. Existing TPU measurements are in TPU_RESULTS_RU.md."
+  "optional_tpu": "Organiser codec, credentials, network and server-side program required. Existing TPU measurements are in TPU_RESULTS_RU.md.",
+  "github_actions": {
+    "application": "https://github.com/Noizicrafty/GreatHanDetect/actions/runs/40143185312",
+    "compose": "https://github.com/Noizicrafty/GreatHanDetect/actions/runs/40143185320",
+    "conclusion": "success",
+    "source_commit": "b8c4cbf"
+  }
 }

@@ -1,6 +1,6 @@
 # Реестр моделей
 
-Бинарные файлы в Git **не включены**. Запросить их у команды, сохранить в указанные пути и проверить SHA-256. Ссылка на автоматическое скачивание отсутствует. Статический manifest: [model_registry.json](evidence/model_registry.json).
+Бинарные файлы в Git **не включены**. Обученный checkpoint после 26 эпох и TPU O1/O5 опубликованы в [Release](https://github.com/Noizicrafty/GreatHanDetect/releases/tag/models-2026-10-25); [URL и SHA-256](evidence/model_artifacts.json). Docker автоматически скачивает checkpoint/O1. Остальные инженерные модели запрашиваются у команды отдельно, сохраняются в указанные пути и проверяются по SHA-256. Статический manifest: [model_registry.json](evidence/model_registry.json).
 
 | Роль | Модель | ONNX | TPU | Проверка |
 |---|---|---|---|---|
