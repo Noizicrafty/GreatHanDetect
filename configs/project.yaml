@@ -1,0 +1,30 @@
+# TPU integration settings. This config is separate from vendor/smoking-detection/configs/pipeline.yaml.
+project:
+  source_repo: https://github.com/clyv/smoking-detection.git
+  python_required_by_tpu: '3.12.11'
+  tpu_target: TPU_H1M
+  optimization: O1
+models:
+  detector:
+    type: yoloworld
+    weights: yolov8l-worldv2.pt
+    input_size: 640
+    onnx: assets/onnx/smoking_objects.onnx
+    tpu: assets/tpu/smoking_objects.tpu
+    calibration: assets/calibration/smoking_objects.npz
+    class_names: [cigarette, vape, cigar, pipe, smoke]
+  pose:
+    weights: yolo11n-pose.pt
+    input_size: 640
+    onnx: assets/onnx/person_pose.onnx
+    tpu: assets/tpu/person_pose.tpu
+    calibration: assets/calibration/person_pose.npz
+inference:
+  confidence_objects: 0.15
+  confidence_pose: 0.30
+  iou_nms: 0.50
+  iou_tracking: 0.30
+  target_fps: 10
+  window_s: 6
+  hop_s: 1
+  max_missing_s: 1.5
