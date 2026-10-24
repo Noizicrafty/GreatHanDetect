@@ -1,0 +1,7 @@
+# Vendor SDK must be installed separately.
+onnx>=1.16
+onnxruntime>=1.18
+numpy>=1.26,<2.3
+pillow>=10
+PyYAML>=6
+opencv-python-headless>=4.9,<5
